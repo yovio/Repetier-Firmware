@@ -36,7 +36,7 @@
 
 */
 
-#define NUM_EXTRUDER 1
+#define NUM_EXTRUDER 2
 #define MOTHERBOARD 33
 #include "pins.h"
 
@@ -65,8 +65,8 @@
 #define MIXING_EXTRUDER 0
 
 #define DRIVE_SYSTEM 0
-#define XAXIS_STEPS_PER_MM 100
-#define YAXIS_STEPS_PER_MM 100
+#define XAXIS_STEPS_PER_MM 200
+#define YAXIS_STEPS_PER_MM 200
 #define ZAXIS_STEPS_PER_MM 400
 #define EXTRUDER_FAN_COOL_TEMP 140
 #define PDM_FOR_EXTRUDER 0
@@ -77,11 +77,11 @@
 #define RETRACT_ON_PAUSE 5
 #define PAUSE_START_COMMANDS ""
 #define PAUSE_END_COMMANDS ""
-#define SHARED_EXTRUDER_HEATER 0
+#define SHARED_EXTRUDER_HEATER 1
 #define EXT0_X_OFFSET 0
 #define EXT0_Y_OFFSET 0
 #define EXT0_Z_OFFSET 0
-#define EXT0_STEPS_PER_MM 370
+#define EXT0_STEPS_PER_MM 95
 #define EXT0_TEMPSENSOR_TYPE 5
 #define EXT0_TEMPSENSOR_PIN TEMP_0_PIN
 #define EXT0_HEATER_PIN HEATER_0_PIN
@@ -118,6 +118,46 @@
 #define EXT0_DECOUPLE_TEST_PERIOD 24000
 #define EXT0_JAM_PIN -1
 #define EXT0_JAM_PULLUP 0
+#define EXT1_X_OFFSET 0
+#define EXT1_Y_OFFSET 0
+#define EXT1_Z_OFFSET 0
+#define EXT1_STEPS_PER_MM 95
+#define EXT1_TEMPSENSOR_TYPE 5
+#define EXT1_TEMPSENSOR_PIN TEMP_0_PIN
+#define EXT1_HEATER_PIN -1
+#define EXT1_STEP_PIN ORIG_E1_STEP_PIN
+#define EXT1_DIR_PIN ORIG_E1_DIR_PIN
+#define EXT1_INVERSE 0
+#define EXT1_ENABLE_PIN ORIG_E1_ENABLE_PIN
+#define EXT1_ENABLE_ON 0
+#define EXT1_MIRROR_STEPPER 0
+#define EXT1_STEP2_PIN ORIG_E1_STEP_PIN
+#define EXT1_DIR2_PIN ORIG_E1_DIR_PIN
+#define EXT1_INVERSE2 0
+#define EXT1_ENABLE2_PIN ORIG_E1_ENABLE_PIN
+#define EXT1_MAX_FEEDRATE 50
+#define EXT1_MAX_START_FEEDRATE 20
+#define EXT1_MAX_ACCELERATION 5000
+#define EXT1_HEAT_MANAGER 3
+#define EXT1_WATCHPERIOD 1
+#define EXT1_PID_INTEGRAL_DRIVE_MAX 230
+#define EXT1_PID_INTEGRAL_DRIVE_MIN 40
+#define EXT1_PID_PGAIN_OR_DEAD_TIME 7
+#define EXT1_PID_I 2
+#define EXT1_PID_D 40
+#define EXT1_PID_MAX 255
+#define EXT1_ADVANCE_K 0
+#define EXT1_ADVANCE_L 0
+#define EXT1_ADVANCE_BACKLASH_STEPS 0
+#define EXT1_WAIT_RETRACT_TEMP 150
+#define EXT1_WAIT_RETRACT_UNITS 0
+#define EXT1_SELECT_COMMANDS ""
+#define EXT1_DESELECT_COMMANDS ""
+#define EXT1_EXTRUDER_COOLER_PIN 57
+#define EXT1_EXTRUDER_COOLER_SPEED 255
+#define EXT1_DECOUPLE_TEST_PERIOD 12000
+#define EXT1_JAM_PIN -1
+#define EXT1_JAM_PULLUP 0
 
 #define FEATURE_RETRACTION 1
 #define AUTORETRACT_ENABLED 0
@@ -321,9 +361,9 @@ It also can add a delay to wait for spindle to run on full speed.
 #define MAX_FEEDRATE_X 400
 #define MAX_FEEDRATE_Y 400
 #define MAX_FEEDRATE_Z 8
-#define HOMING_FEEDRATE_X 40
-#define HOMING_FEEDRATE_Y 40
-#define HOMING_FEEDRATE_Z 2
+#define HOMING_FEEDRATE_X 60
+#define HOMING_FEEDRATE_Y 60
+#define HOMING_FEEDRATE_Z 5
 #define HOMING_ORDER HOME_ORDER_XYZ
 #define ZHOME_MIN_TEMPERATURE 0
 #define ZHOME_HEAT_ALL 1
@@ -602,6 +642,59 @@ Values must be in range 1..255
                 "dir": "ORIG_E0_DIR_PIN",
                 "enable": "ORIG_E0_ENABLE_PIN"
             }
+        },
+        {
+            "id": 1,
+            "heatManager": 3,
+            "pidDriveMin": 40,
+            "pidDriveMax": 230,
+            "pidMax": 255,
+            "sensorType": 5,
+            "sensorPin": "TEMP_0_PIN",
+            "heaterPin": -1,
+            "maxFeedrate": 50,
+            "startFeedrate": 20,
+            "invert": "0",
+            "invertEnable": "0",
+            "acceleration": 5000,
+            "watchPeriod": 1,
+            "pidP": 7,
+            "pidI": 2,
+            "pidD": 40,
+            "advanceK": 0,
+            "advanceL": 0,
+            "waitRetractTemp": 150,
+            "waitRetractUnits": 0,
+            "waitRetract": 0,
+            "stepsPerMM": 95,
+            "coolerPin": 57,
+            "coolerSpeed": 255,
+            "selectCommands": "",
+            "deselectCommands": "",
+            "xOffset": 0,
+            "yOffset": 0,
+            "zOffset": 0,
+            "xOffsetSteps": 0,
+            "yOffsetSteps": 0,
+            "zOffsetSteps": 0,
+            "stepper": {
+                "name": "Extruder 1",
+                "step": "ORIG_E1_STEP_PIN",
+                "dir": "ORIG_E1_DIR_PIN",
+                "enable": "ORIG_E1_ENABLE_PIN"
+            },
+            "advanceBacklashSteps": 0,
+            "decoupleTestPeriod": 12,
+            "jamPin": -1,
+            "jamPullup": "0",
+            "mirror": "0",
+            "invert2": "0",
+            "stepper2": {
+                "name": "Extruder 1",
+                "step": "ORIG_E1_STEP_PIN",
+                "dir": "ORIG_E1_DIR_PIN",
+                "enable": "ORIG_E1_ENABLE_PIN"
+            }
         }
     ],
     "uiLanguage": 0,
@@ -743,7 +836,7 @@ Values must be in range 1..255
     "enableZProbing": "0",
     "extrudeMaxLength": 160,
     "homeOrder": "HOME_ORDER_XYZ",
-    "featureController": 10,
+    "featureController": 24,
     "uiPrinterName": "Anet A8",
     "uiPrinterCompany": "Anet",
     "uiPagesDuration": 4000,
@@ -1174,8 +1267,8 @@ Values must be in range 1..255
     "bedMotor3Y": 200,
     "zProbeRequiresHeating": "0",
     "zProbeMinTemperature": 150,
-    "adcKeypadPin": -1,
-    "sharedExtruderHeater": "0",
+    "adcKeypadPin": 12,
+    "sharedExtruderHeater": "1",
     "extruderSwitchXYSpeed": 100,
     "dualXAxis": "0",
     "boardFanSpeed": 255,
@@ -1187,7 +1280,7 @@ Values must be in range 1..255
     "hasUser0": true,
     "hasUser1": false,
     "hasUser2": false,
-    "numExtruder": 1,
+    "numExtruder": 2,
     "version": 92.9,
     "primaryPortName": ""
 }
